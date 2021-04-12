@@ -13,6 +13,7 @@ var letters_w = []
 var wordsletters = []
 var wrongletters = []
 var currents = '_|'.repeat(word.length)
+var currentscheck = []
 currents = currents.split("|")
 
 //<-----------------I want see our changes------------------>
@@ -56,19 +57,28 @@ function presskey(t) {
         index = letters_w.indexOf(userchoose)
         currents[index] = userchoose
         document.getElementById("current").innerHTML = (currents)
+        console.log("Currents: " + currents)
 
     }
-    else if(letters_w.indexOf(userchoose)== -1){
-       if(wrongletters.indexOf(userchoose) == -1){
-        wrongletters.push(userchoose)
-        heart --
-        console.log(heart)
-        console.log(wrongletters)
-        document.getElementById("wrongs").innerHTML = wrongletters
-        document.getElementById("hearts").innerHTML = heart
-   }}
+    else if (word.indexOf(userchoose) == -1) {
+        if (wrongletters.indexOf(userchoose) == -1) {
+            wrongletters.push(userchoose)
+            heart--
+            console.log(heart)
+            console.log(wrongletters)
+            document.getElementById("wrongs").innerHTML = wrongletters
+            document.getElementById("hearts").innerHTML = heart
+        }
+    }
+    console.log(currents[1])
+    console.log(currents.indexOf("_"))
+    if (currents.indexOf("_") == -1) {
+        wins += 1
+        document.getElementById("wins").innerHTML = ("Wins: " + wins)
+
+    }
 }
-    
+
 
 //<-------I don't need to explain this code------------>
 window.onkeypress = presskey
